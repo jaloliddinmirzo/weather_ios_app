@@ -56,7 +56,7 @@ class CustomRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "$tempC°",
+                  "$tempC",
                   style: const TextStyle(
                     color: Color(0xFF303345),
                     fontSize: 48,
@@ -64,13 +64,18 @@ class CustomRow extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Color(0xFF303345),
-                    fontSize: 14,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
+                SizedBox(
+                  width: 100,
+                  child: Text(
+                    maxLines: 1,
+                    title,
+                    style: const TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      color: Color(0xFF303345),
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 )
               ],
@@ -78,6 +83,7 @@ class CustomRow extends StatelessWidget {
             const Text(
               '°C',
               style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                 color: Color(0xFF303345),
                 fontSize: 22,
                 fontFamily: 'Inter',
