@@ -56,7 +56,7 @@ class CustomRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "$tempC",
+                  tempC,
                   style: const TextStyle(
                     color: Color(0xFF303345),
                     fontSize: 48,

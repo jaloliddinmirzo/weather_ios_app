@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_ios_app/presentation/widgets/custom_appbar.dart';
-import 'package:weather_ios_app/presentation/widgets/custom_item.dart';
 import 'package:weather_ios_app/presentation/widgets/custom_top.dart';
-import 'package:weather_ios_app/presentation/widgets/cutom_tabBar.dart';
 import 'package:weather_ios_app/presentation/widgets/forcast_con.dart';
 import 'package:weather_ios_app/provider/weather_provide.dart';
 
@@ -101,7 +98,7 @@ class _ForcastScreenState extends State<ForcastScreen> {
                 Expanded(
                     child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 7,
+                  itemCount: watherProvide.weatherdata.forecast?.forecastday?.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
                     final day =

@@ -1,9 +1,7 @@
 import 'dart:developer';
-import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_ios_app/data/models/weather_model.dart';
 import 'package:weather_ios_app/presentation/screens/forcast_screen.dart';
 import 'package:weather_ios_app/presentation/widgets/custom_appbar.dart';
 import 'package:weather_ios_app/presentation/widgets/custom_con.dart';
@@ -34,26 +32,26 @@ class _HomePageState extends State<HomePage> {
         final data = weatherProvide.weatherdata;
 
         // Null safety qiymatlar
-        weatherProvide.cityName = data?.location?.name ?? "Unknown City";
-        final currentImage = data?.current?.condition?.icon ?? "";
-        final text = data?.current?.condition?.text ?? "Unknown Condition";
-        final tempC = data?.current?.tempC?.round().toString() ?? "0";
-        final windMph = data?.current?.windMph?.round() ?? 0;
-        final cloud = data?.current?.cloud?.round() ?? 0;
-        final humidity = data?.current?.humidity?.round() ?? 0;
-        final date = data?.location?.localtime != null
-            ? DateTime.parse("${data?.location?.localtime}")
+        weatherProvide.cityName = data.location?.name ?? "Unknown City";
+        final currentImage = data.current?.condition?.icon ?? "";
+        final text = data.current?.condition?.text ?? "Unknown Condition";
+        final tempC = data.current?.tempC?.round().toString() ?? "0";
+        final windMph = data.current?.windMph?.round() ?? 0;
+        final cloud = data.current?.cloud?.round() ?? 0;
+        final humidity = data.current?.humidity?.round() ?? 0;
+        final date = data.location?.localtime != null
+            ? DateTime.parse("${data.location?.localtime}")
             : DateTime.now();
         final formattedDate = DateFormat("EEE, MMM d").format(date);
         final lastHour = DateFormat("H").format(date);
-        final filterHours = data?.forecast?.forecastday?.first.hour?.where(
+        final filterHours = data.forecast?.forecastday?.first.hour?.where(
           (item) {
             final timeHour = item.time?.split(" ").last.split(":").first;
             return int.tryParse(lastHour) != int.tryParse(timeHour ?? "0");
           },
         ).toList();
 
-        log("Meni datam kelyapti ${data?.current?.cloud}");
+        log("Meni datam kelyapti ${data.current?.cloud}");
 
         return Scaffold(
           backgroundColor: const Color(0xFFF39876),
@@ -103,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                           CustomRow(
                               imagePath: "https:$currentImage",
                               title: text,
-                              tempC: "$tempC"),
+                              tempC: tempC),
                           CustomContainer(
                             iconPath: "assets/rain.svg",
                             title: "RainFall",
